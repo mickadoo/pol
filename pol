@@ -1,0 +1,26 @@
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+NC='\033[0m' # No Color
+
+times="${1-2}"
+poltimes=$((${times} * 2))
+
+for x in `seq 1 $poltimes` 
+do
+  printf "${RED}pol${NC}\n"
+  sleep 2;
+done & 
+for y in `seq 1 $times` 
+do
+  sleep 1;
+  printf "${BLUE}  ka dee${NC}\n"
+  sleep 3;
+done &
+for z in `seq 1 $times`
+do
+  sleep 3;
+  printf "${PURPLE}    ka${NC}\n"
+  sleep 1;
+done
+
