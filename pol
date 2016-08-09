@@ -3,24 +3,29 @@ BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
-times="${1-2}"
-poltimes=$((${times} * 2))
+times="${1-2}" # times defaults to 2
+speed="${2-1}" # speed defaults to 1
 
-for x in `seq 1 $poltimes` 
+pol_times=$((${times} * 2))
+one_beat=$(echo "scale=2; $speed*1" | bc)
+two_beat=$(echo "scale=2; $speed*2" | bc)
+three_beat=$(echo "scale=2; $speed*3" | bc)
+
+for x in `seq 1 $pol_times` 
 do
   printf "${RED}pol${NC}\n"
-  sleep 2;
+  sleep ${two_beat};
 done & 
 for y in `seq 1 $times` 
 do
-  sleep 1;
+  sleep ${one_beat};
   printf "${BLUE}  ka dee${NC}\n"
-  sleep 3;
+  sleep ${three_beat};
 done &
 for z in `seq 1 $times`
 do
-  sleep 3;
+  sleep ${three_beat};
   printf "${PURPLE}    ka${NC}\n"
-  sleep 1;
+  sleep ${one_beat};
 done
 
